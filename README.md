@@ -1,5 +1,9 @@
 # AI Resume Enhancer
 
+## Description
+
+AI Resume Enhancer is a tool that leverages AI agents to provide a tailored resume based on a job post link and your actual resume. By analyzing the job post and your existing resume, the AI agents generate a customized resume that highlights the most relevant skills and experiences, increasing your chances of landing the job.
+
 ## Installation
 
 ### 1. Install Python 3.11
