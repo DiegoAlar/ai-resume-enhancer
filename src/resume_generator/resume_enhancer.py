@@ -23,8 +23,8 @@ os.environ["SERPER_API_KEY"] = os.getenv('SERPER_API_KEY')
 def create_agents():
     search_tool = SerperDevTool()
     scrape_tool = ScrapeWebsiteTool()
-    read_resume = FileReadTool(file_path='./resume.md')
-    semantic_search_resume = MDXSearchTool(mdx='./fake_resume.md')
+    read_resume = FileReadTool(file_path='input/resume.md')
+    semantic_search_resume = MDXSearchTool(mdx='input/fake_resume.md')
 
     researcher = Agent(
         role="Tech Job Researcher",
@@ -112,7 +112,7 @@ def create_tasks(researcher, profiler, resume_strategist, interview_preparer):
         expected_output=(
             "An updated resume that effectively highlights the candidate's qualifications and experiences relevant to the job."
         ),
-        output_file="tailored_resume.md",
+        output_file="output/tailored_resume.md",
         context=[research_task, profile_task],
         agent=resume_strategist
     )
@@ -126,7 +126,7 @@ def create_tasks(researcher, profiler, resume_strategist, interview_preparer):
         expected_output=(
             "A document containing key questions and talking points that the candidate should prepare for the initial interview."
         ),
-        output_file="interview_materials.md",
+        output_file="output/interview_materials.md",
         context=[research_task, profile_task, resume_strategy_task],
         agent=interview_preparer
     )
@@ -146,9 +146,9 @@ def main():
     )
 
     job_application_inputs = {
-        'job_posting_url': 'job post url here!',
+        'job_posting_url': 'url post here!',
         'github_url': 'Your github url here!',
-        'personal_writeup': """Your personal writeup here!"""
+        'personal_writeup': """As a passionate and dedicated Senior Software Engineer, I thrive on solving complex problems and delivering high-quality software solutions. With over a decade of experience in both frontend and backend development, I have honed my skills in various programming languages and modern frameworks. My journey has taken me from developing robust web applications to architecting scalable cloud-based solutions. I am committed to continuous learning and enjoy mentoring junior engineers to help them grow in their careers. Outside of work, I stay updated with the latest industry trends and enjoy exploring new technologies."""
     }
 
     result = job_application_crew.kickoff(inputs=job_application_inputs)
